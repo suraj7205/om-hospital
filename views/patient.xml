@@ -1,0 +1,138 @@
+<odoo>
+    <!--    to create field and to create the box that take the input and give it to viwes -->
+    <!--    creating a tree view of the patient-->
+    <record id="patient_tree" model="ir.ui.view">
+        <field name="name">hospital.patient.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="name"/>
+                <field name="responsible_id"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="note"/>
+                <field name="number"/>
+                <field name="dob"/>
+                <field name="responsible2_ids" widget="many2many_tags"/>
+
+
+            </tree>
+        </field>
+    </record>
+    <!--    creating a form view for the patient-->
+    <record id="patient_form" model="ir.ui.view">
+        <field name="name">hospital.patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+
+            <form>
+
+                <header>
+                    <button name="browse_api" string="browse" type="object" class="oe_highlight"/>
+                    <button name="search_api" string="search" type="object"/>
+                    <button name="create_api" string="create" type="object"/>
+                    <button string="searchcount" type="object" name="searchcount"/>
+                    <!--                    <button id="create_action" string="wiz" type="action" name="%(action_wiz)d"/>-->
+                    <button id="create_wiz_view" string="wizard_2" type="object" name="wiz_button"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="action_open_app" type="object" icon="fa-bars">
+                            <div class="o_stat_info">
+                                <field name="age" class="o_stat_value"/>
+                                <span class="o_stat_text">new appointment</span>
+                            </div>
+                        </button>
+
+
+                    </div>
+
+                    <div class="oe_title">
+
+
+                        <h1>
+                            <field name="reference" readonly='1'/>
+                        </h1>
+
+
+                    </div>
+                    <group>
+                        <group>
+                            <field name="responsible_id"/>
+                            <field name="name"/>
+                            <field name="age"/>
+                            <!--                            <field name="ref"/>-->
+                        </group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="note"/>
+                            <field name="dob"/>
+                            <field name="number"/>
+                            <field name="responsible2_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--   searching the patient by his name and note(feild i have cretaed)-->
+    <record id="patient_search" model="ir.ui.view">
+        <field name="name">hospital.patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search string="Patient">
+                <field name="name"/>
+                <field name="note"/>
+
+                <separator/>
+                <filter string="Male" name="male" domain="[('gender', '=', 'male')]"/>
+                <group expand="2" string="Group by">
+                    <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
+
+                </group>
+                <group expand="1" string="age">
+                    <filter string="age" name="age" context="{'group_by':'age'}"/>
+
+
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <!--to show the actions or t0 show in hospital module-->
+    <record id="action_patients" model="ir.actions.act_window">
+        <field name="name">patients</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="xml">
+            <p class="o_view_nocontent_empty_folder">create a patient</p>
+        </field>
+    </record>
+
+
+    <menuitem id="hospital_root"
+              name="hospital"
+              sequence="2"/>
+
+    <menuitem id="hospital_patient_root"
+              name="patients"
+              parent="hospital_root"
+              sequence="3"/>
+    <menuitem id="hospital_patient"
+              name="patient"
+              action="action_patients"
+              parent="hospital_patient_root"
+              sequence="5"/>
+    <menuitem id="create_wizard"
+              name="create_wiz"
+              action="action_wiz"
+              parent="hospital_patient_root"
+              sequence="5"/>
+
+</odoo>

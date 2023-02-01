@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_create_wiz" model="ir.ui.view">
+        <field name="name">create.wizard.form</field>
+        <field name="model">create.wizard</field>
+        <field name="arch" type="xml">
+            <form string="new wiz">
+                <group class="oe_title">
+                    <field name="name"/>
+                    <!--                        <field name="responsible_id"/>-->
+                    <field name="age"/>
+                    <field name="gender"/>
+                    <field name="note"/>
+                    <field name="number"/>
+                                    <field name="responsible2_ids" widget="many2many_tags"/>
+                                    <field name="responsible_id"/>
+
+                </group>
+                <footer>
+                    <button name="action_print_report" string="show" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wiz" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_create_wiz"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
