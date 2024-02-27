@@ -84,10 +84,10 @@
         </field>
     </record>
 
-    <menuitem id="appointment_menu"
-              name="Appointments"
-              parent="hospital_root"
-              action="action_hospital_appointment"
-              sequence="0"/>
+<!--    <menuitem id="appointment_menu"-->
+<!--              name="Appointments"-->
+<!--              parent="hospital_root"-->
+<!--              action="action_hospital_appointment"-->
+<!--              sequence="0"/>-->
 
 </odoo>
