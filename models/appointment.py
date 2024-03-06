@@ -15,10 +15,10 @@ class HospitalAppointment(models.Model):
 
     @api.onchange('patient_id')
     def onchange_gender(self):
-        print("hello")
-        print("hi")
+        print("hlo")
+        print("hyyi")
         a = 20
-        b = 30
+        b = 40
         print(a + b)
         for rec in self:
             rec.gender1 = rec.patient_id.gender
