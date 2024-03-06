@@ -6,9 +6,15 @@ class HospitalAppointment(models.Model):
     _description = "Hospital Appointment"
     # _rec_name = "patient_id"
 
+
     patient_id = fields.Many2one("hospital.patient", string="Patients")
     gender1 = fields.Char(string='gender')
     age = fields.Integer(string='age')
+    print("hello")
+    print("hiii")
+    a=2
+    b=3
+    print(a+b)
     appointment_time = fields.Datetime(string='Appointment Time', default=fields.Datetime.now)
     booking_date = fields.Date(string='Booking Date', default=fields.Date.context_today)
     pharma_ids=fields.One2many('appointment.pharma','app_id',string='pharma')
